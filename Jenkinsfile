@@ -1,7 +1,6 @@
 pipeline {
     agent any
 
-
     stages {
         stage("Clean up") {
             steps {
@@ -33,3 +32,4 @@ pipeline {
         }
     }
 }
+
