@@ -1,0 +1,25 @@
+Version: "2" 
+services: 
+vote: 
+image: eesprit/voting-app-vote 
+ports: 
+-  "5000:80" 
+links: 
+-  redis 
+redis: 
+  image: redts:alpine 
+worker: 
+  image: eesprit/voting-app-worker 
+  links:
+  -  redis
+  -  db 
+db: 
+  image: postgres:9.4 
+  environment: 
+    - POSTGRES HOST_AUTH_METHOD=trust 
+result: 
+  image: eesprit/voting-app-result 
+  links: 
+    - db 
+  ports: 
+   -"5001:80" 
